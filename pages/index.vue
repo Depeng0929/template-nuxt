@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div i-twemoji:waving-hand text-4xl inline-block animate-bounce />
+    <div class="i-mdi-pencil" />
     <h3 class="text-base font-500">
       Hi,
     </h3>

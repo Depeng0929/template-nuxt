@@ -1,7 +1,7 @@
-import { Plugin } from '@nuxt/types'
+import { defineNuxtPlugin } from '@nuxtjs/composition-api'
 import { AxiosResponse, AxiosRequestConfig } from 'axios'
 
-const http: Plugin = ({ $axios, redirect, error, store }) => {
+export default defineNuxtPlugin(({ $axios, redirect, error, store }) => {
   $axios.defaults.timeout = 1000
 
   $axios.onRequest((config: AxiosRequestConfig) => {
@@ -27,6 +27,4 @@ const http: Plugin = ({ $axios, redirect, error, store }) => {
     error({ statusCode: status, message: data })
     return Promise.reject(e)
   })
-}
-
-export default http
+})

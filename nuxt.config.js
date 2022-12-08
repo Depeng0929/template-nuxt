@@ -1,7 +1,6 @@
 export default {
   ssr: true,
   target: 'server',
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'template-nuxt2',
     htmlAttrs: {
@@ -18,21 +17,10 @@ export default {
     ]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@unocss/reset/tailwind.css',
     '~/styles/main.css'
   ],
-  unocss: {
-    // presets
-    uno: true, // enabled `@unocss/preset-uno`
-    icons: true, // enabled `@unocss/preset-icons`
-    attributify: true, // enabled `@unocss/preset-attributify`,
-
-    // core options
-    shortcuts: [],
-    rules: []
-  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -40,7 +28,6 @@ export default {
     '~/plugins/http.ts'
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -64,7 +51,6 @@ export default {
     'cookie-universal-nuxt'
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
@@ -108,14 +94,9 @@ export default {
 
   postcss: {
     plugins: {
-      // Disable a plugin by passing false as value
-      'postcss-url': false,
-      'postcss-nested': {},
-      'postcss-responsive-type': {},
-      'postcss-hexrgba': {}
+      'postcss-url': false
     },
     preset: {
-      // Change the postcss-preset-env settings
       autoprefixer: {
         grid: true
       }

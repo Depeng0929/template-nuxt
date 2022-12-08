@@ -1,6 +1,5 @@
-import { Middleware } from '@nuxt/types'
+import { defineNuxtMiddleware } from '@nuxtjs/composition-api'
 
-const auth:Middleware = ({ redirect }) => {
-}
-
-export default auth
+export default defineNuxtMiddleware(({ redirect }) => {
+  console.log(2)
+})
