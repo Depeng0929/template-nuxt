@@ -19,18 +19,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { sleep } from '~/utils/tools'
-
-export default defineComponent({
-  name: 'Home',
-  asyncData () {
-    return sleep(4000).then(() => {
-      return {
-        a: 'kkkk1'
-      }
-    })
-  }
-})
+<script lang="ts" setup>
+const a = ref('k')
 </script>
