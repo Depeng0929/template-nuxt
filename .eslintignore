@@ -1,0 +1,5 @@
+wp-dist
+dist
+node_modules
+assets
+*.json
