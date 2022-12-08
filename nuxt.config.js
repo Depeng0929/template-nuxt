@@ -19,13 +19,15 @@ export default {
 
   css: [
     '@unocss/reset/tailwind.css',
-    '~/styles/main.css'
+    '~/styles/main.css',
+    '~/assets/ant/main.less'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/uno.ts',
-    '~/plugins/http.ts'
+    '~/plugins/http.ts',
+    '~/plugins/ant-design-vue'
   ],
 
   components: true,
@@ -70,6 +72,28 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true, // 提取css到单独link文件
+    transpile: [/^ant-design-vue/],
+    optimization: {
+      splitChunks: {
+        // 代码打包分割规则
+        cacheGroups: {
+          antDesignVue: {
+            name: 'chunk-antd',
+            priority: 10,
+            test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/
+          }
+        }
+      }
+    },
+    loaders: {
+      less: {
+        lessOptions: {
+          javascriptEnabled: true,
+          math: 'always'
+        }
+      }
+    },
     babel: {
       presets ({ envName }) {
         const envTargets = {

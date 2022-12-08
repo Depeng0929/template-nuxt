@@ -7,7 +7,9 @@
     <div text-xl>
       {{ a }}!
     </div>
-
+    <a-button type="primary">
+      Primary13
+    </a-button>
     <div>
       <NuxtLink
         class="btn m-3 text-sm"
