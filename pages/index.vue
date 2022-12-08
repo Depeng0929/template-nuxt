@@ -8,8 +8,6 @@
       {{ a }}!
     </div>
 
-    <Counter />
-
     <div>
       <NuxtLink
         class="btn m-3 text-sm"
@@ -21,12 +19,18 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { sleep } from '~/utils/tools'
 
-const a = ref(1)
-
-setTimeout(() => {
-  a.value = 2
-}, 2000)
+export default defineComponent({
+  name: 'Home',
+  asyncData () {
+    return sleep(4000).then(() => {
+      return {
+        a: 'kkkk1'
+      }
+    })
+  }
+})
 </script>

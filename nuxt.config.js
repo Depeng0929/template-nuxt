@@ -1,4 +1,6 @@
 export default {
+  ssr: true,
+  target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'template-nuxt2',
@@ -34,7 +36,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/uno.ts'
+    '~/plugins/uno.ts',
+    '~/plugins/http.ts'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -50,17 +53,50 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@unocss/nuxt'
+    '@unocss/nuxt',
+    'cookie-universal-nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: '/',
+    proxy: true,
+    prefix: '/api'
+  },
+
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3001',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': ''
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel: {
+      presets ({ envName }) {
+        const envTargets = {
+          client: { ie: 9 },
+          server: { node: 'current' }
+        }
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              targets: envTargets[envName]
+            }
+          ]
+        ]
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   postcss: {
